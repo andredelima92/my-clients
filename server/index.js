@@ -1,8 +1,10 @@
 const express = require("express");
 const { v4: uuid, validate } = require("uuid");
+const cors = require("cors");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 const clients = [];
@@ -65,7 +67,7 @@ app.delete("/clients/:id", (request, response) => {
 
   clients.splice(clientIndex, 1);
 
-  response.json(clients);
+  response.status(204).json();
 });
 
 app.listen(3333, () => {
