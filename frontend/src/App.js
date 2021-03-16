@@ -13,8 +13,12 @@ function App() {
     });
   }, []);
 
-  function handleAddProject() {
-    setClients([...clients, { id: Date.now(), name: "teste" }]);
+  async function handleAddProject() {
+    const { data } = await api.post("clients", {
+      name: "Tiringa" + Date.now(),
+    });
+
+    setClients([...clients, data]);
   }
 
   return (
